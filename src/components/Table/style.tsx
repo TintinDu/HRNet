@@ -23,3 +23,7 @@ export const StyledTd = styled.td`
   padding: 0.5rem;
   text-align: left;
 `;
+
+export const StyledTbody = styled.tbody`
+  background-color: white;
+`;
