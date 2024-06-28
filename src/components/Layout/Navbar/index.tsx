@@ -1,12 +1,19 @@
 import styled from "styled-components";
+import { Logo } from "../../../common/Logo";
+import { Link } from "../../Link";
 
 const StyledNavbar = styled.nav`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 5px 20px;
+  padding: 0px 20px;
 `;
 
 export function Navbar() {
-  return <StyledNavbar></StyledNavbar>;
+  return (
+    <StyledNavbar>
+      <Logo />
+      <Link path="employees" label="View Current Employees" />
+    </StyledNavbar>
+  );
 }

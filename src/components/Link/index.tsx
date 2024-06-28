@@ -2,15 +2,11 @@ import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 export const StyledLink = styled.a`
+  color: #007bff;
   cursor: pointer;
-  margin: 0.5rem;
-  padding: 0.5rem;
-  border-radius: 5px;
-  background-color: #f2f2f2;
   text-decoration: none;
-  color: black;
   &:hover {
-    background-color: #e2e2e2;
+    text-decoration: underline;
   }
 `;
 

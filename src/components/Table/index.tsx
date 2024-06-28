@@ -8,6 +8,7 @@ import {
 import { DataEmployees } from "../../pages/EmployeesList";
 import {
   StyledTable,
+  StyledTbody,
   StyledTd,
   StyledTh,
   StyledThead,
@@ -23,27 +24,35 @@ export const Table = ({ data }: { data: DataEmployees }) => {
       header: "First Name",
     }),
     columnHelper.accessor("lastName", {
+      id: "lastName",
       header: "Last Name",
     }),
     columnHelper.accessor("startDate", {
+      id: "startDate",
       header: "Start Date",
     }),
     columnHelper.accessor("department", {
+      id: "department",
       header: "Department",
     }),
     columnHelper.accessor("birthDate", {
+      id: "birthDate",
       header: "Date of Birth",
     }),
     columnHelper.accessor("street", {
+      id: "street",
       header: "Street",
     }),
     columnHelper.accessor("city", {
+      id: "city",
       header: "City",
     }),
     columnHelper.accessor("state", {
+      id: "state",
       header: "State",
     }),
     columnHelper.accessor("zipCode", {
+      id: "zipCode",
       header: "Zip Code",
     }),
   ];
@@ -78,7 +87,7 @@ export const Table = ({ data }: { data: DataEmployees }) => {
           );
         })}
       </StyledThead>
-      <tbody>
+      <StyledTbody>
         {table.getRowModel().rows.map((row) => {
           return (
             <StyledTr key={row.id}>
@@ -92,7 +101,7 @@ export const Table = ({ data }: { data: DataEmployees }) => {
             </StyledTr>
           );
         })}
-      </tbody>
+      </StyledTbody>
     </StyledTable>
   );
 };
