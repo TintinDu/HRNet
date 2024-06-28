@@ -1,6 +1,7 @@
 import { HeaderEmployees } from "./style";
 import { Link } from "../../components/Link";
 import { Table } from "../../components/Table";
+import { routes } from "../../routes/router.constants";
 
 const data = [
   {
@@ -45,7 +46,7 @@ export function EmployeesList() {
     <>
       <HeaderEmployees>Current Employees</HeaderEmployees>
       <Table data={data} />
-      <Link path="" label="Home" />
+      <Link path={routes.HOME} label="Home" />
     </>
   );
 }

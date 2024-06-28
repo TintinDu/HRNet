@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import { routes } from "../../routes/router.constants";
 
 const StyledH1 = styled.h1`
   font-size: 2rem;
@@ -17,7 +18,7 @@ const StyledH1 = styled.h1`
 
 export const Logo = () => {
   return (
-    <Link to="/">
+    <Link to={routes.HOME}>
       <StyledH1>HRnet</StyledH1>
     </Link>
   );

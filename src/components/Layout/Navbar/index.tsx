@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { Logo } from "../../../common/Logo";
 import { Link } from "../../Link";
+import { routes } from "../../../routes/router.constants";
 
 const StyledNavbar = styled.nav`
   display: flex;
@@ -13,7 +14,7 @@ export function Navbar() {
   return (
     <StyledNavbar>
       <Logo />
-      <Link path="employees" label="View Current Employees" />
+      <Link path={routes.EMPLOYEES} label="View Current Employees" />
     </StyledNavbar>
   );
 }
