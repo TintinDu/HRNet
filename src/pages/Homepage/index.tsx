@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import { Form } from "../../components/Form";
-import { Container } from "../../components/Layout/Container";
 
 const HeaderSecondary = styled.h2`
   font-size: 1.3rem;
@@ -14,10 +13,8 @@ const HeaderSecondary = styled.h2`
 export const Homepage = () => {
   return (
     <>
-      <Container>
-        <HeaderSecondary>Create Employee</HeaderSecondary>
-        <Form />
-      </Container>
+      <HeaderSecondary>Create Employee</HeaderSecondary>
+      <Form />
     </>
   );
 };

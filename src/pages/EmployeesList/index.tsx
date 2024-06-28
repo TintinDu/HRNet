@@ -1,4 +1,3 @@
-import { Container } from "../../components/Layout/Container";
 import { HeaderEmployees } from "./style";
 import { Link } from "../../components/Link";
 import { Table } from "../../components/Table";
@@ -43,10 +42,10 @@ export type DataEmployees = typeof data;
 
 export function EmployeesList() {
   return (
-    <Container>
+    <>
       <HeaderEmployees>Current Employees</HeaderEmployees>
       <Table data={data} />
       <Link path="" label="Home" />
-    </Container>
+    </>
   );
 }
