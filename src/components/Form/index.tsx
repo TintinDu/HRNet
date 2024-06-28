@@ -12,7 +12,8 @@ import {
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { FormSelect } from "../Select";
-import { TintinDuDialog } from "tintindu-dialog";
+import { departments, states } from "../../constants";
+import { Dialog } from "../Dialog";
 
 export function Form() {
   const [firstName, setFirstName] = useState("");
@@ -25,33 +26,31 @@ export function Form() {
 
   const [isOpen, setIsOpen] = useState(false);
 
-  const states = [
-    { value: "FRA", label: "France", color: "#0052cc" },
-    { value: "USA", label: "United States", color: "#5243AA" },
-    { value: "GBR", label: "United Kingdom", color: "#FF5630" },
-    { value: "DEU", label: "Germany", color: "#FF8B00" },
-    { value: "ITA", label: "Italy", color: "#FFC400" },
-  ];
-
-  const departments = [
-    { value: "Sales", label: "Sales", color: "#FF8B00" },
-    { value: "Marketing", label: "Marketing", color: "#FFC400" },
-    { value: "Engineering", label: "Engineering", color: "#36B37E" },
-    { value: "Human Resources", label: "Human Resources", color: "#00B8D9" },
-    { value: "Legal", label: "Legal", color: "#0052CC" },
-  ];
-
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    const data = {
+      firstName,
+      lastName,
+      dateOfBirth,
+      startDate,
+      street,
+      city,
+      zipCode,
+    };
+    // Submit form data to the server
+    // await fetch("/api/employee", {
+    //   method: "POST",
+    //   body: data,
+    // });
+
+    console.log(data);
+
     setIsOpen(true);
   };
 
   return (
     <>
-      <TintinDuDialog isOpen={isOpen} onClose={() => setIsOpen(false)}>
-        <h1>Success</h1>
-        <p>Your form has been submitted successfully</p>
-      </TintinDuDialog>
+      <Dialog isOpen={isOpen} setIsOpen={setIsOpen} />
       <StyledForm onSubmit={handleSubmit} method="POST">
         <InputWrapper>
           <CustomerLabel>First Name</CustomerLabel>
