@@ -2,6 +2,7 @@ import { createBrowserRouter } from "react-router-dom";
 import { Homepage } from "../pages/Homepage";
 import { Layout } from "../layout";
 import { EmployeesList } from "../pages/EmployeesList";
+import { routes } from "./router.constants";
 
 export const router = createBrowserRouter([
   {
@@ -9,11 +10,11 @@ export const router = createBrowserRouter([
     errorElement: "Failed to load page",
     children: [
       {
-        path: "/",
+        path: routes.HOME,
         element: <Homepage />,
       },
       {
-        path: "/employees",
+        path: routes.EMPLOYEES,
         element: <EmployeesList />,
       },
     ],

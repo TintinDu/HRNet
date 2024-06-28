@@ -55,7 +55,6 @@ export function Form() {
         <InputWrapper>
           <CustomerLabel>First Name</CustomerLabel>
           <CustomInput
-            type="text"
             value={firstName}
             onChange={(e) => setFirstName(e.target.value)}
           />
@@ -64,7 +63,6 @@ export function Form() {
         <InputWrapper>
           <CustomerLabel>Last Name</CustomerLabel>
           <CustomInput
-            type="text"
             value={lastName}
             onChange={(e) => setLastName(e.target.value)}
           />
@@ -94,7 +92,6 @@ export function Form() {
               <CustomSmallLabel htmlFor="street">Street</CustomSmallLabel>
               <CustomInput
                 id="street"
-                type="text"
                 value={street}
                 onChange={(e) => setStreet(e.target.value)}
               />
@@ -104,7 +101,6 @@ export function Form() {
               <CustomSmallLabel htmlFor="city">City</CustomSmallLabel>
               <CustomInput
                 id="city"
-                type="text"
                 value={city}
                 onChange={(e) => setCity(e.target.value)}
               />

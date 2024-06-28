@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import { Route } from "../../routes/router.constants";
 
 export const StyledLink = styled.a`
   color: #007bff;
@@ -10,12 +11,12 @@ export const StyledLink = styled.a`
   }
 `;
 
-export const Link = ({ path, label }: { path: string; label: string }) => {
+export const Link = ({ path, label }: { path: Route; label: string }) => {
   const navigate = useNavigate();
   return (
     <StyledLink
       onClick={() => {
-        navigate("/" + path);
+        navigate(path);
       }}
     >
       {label}
