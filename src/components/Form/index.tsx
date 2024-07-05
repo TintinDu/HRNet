@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import {
   CustomInput,
   CustomLegend,
@@ -14,36 +14,36 @@ import "react-datepicker/dist/react-datepicker.css";
 import { FormSelect } from "../Select";
 import { departments, states } from "../../constants";
 import { Dialog } from "../Dialog";
+import { Context } from "../../contexts";
 
 export function Form() {
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [dateOfBirth, setDateOfBirth] = useState<Date | null>(new Date());
-  const [startDate, setStartDate] = useState<Date | null>(new Date());
-  const [street, setStreet] = useState("");
-  const [city, setCity] = useState("");
-  const [zipCode, setZipCode] = useState("");
+  const { data, setData } = useContext(Context);
+  console.log(data);
+  const [firstName, setFirstName] = useState<string>("");
+  const [lastName, setLastName] = useState<string>("");
+  const [dateOfBirth, setDateOfBirth] = useState<Date>(new Date());
+  const [startDate, setStartDate] = useState<Date>(new Date());
+  const [street, setStreet] = useState<string>("");
+  const [city, setCity] = useState<string>("");
+  const [zipCode, setZipCode] = useState<string>("");
 
   const [isOpen, setIsOpen] = useState(false);
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const data = {
+    const dataToSubmit = {
       firstName,
       lastName,
-      dateOfBirth,
-      startDate,
+      birthDate: dateOfBirth.toISOString(),
+      startDate: startDate.toISOString(),
+      department: "",
       street,
       city,
+      state: "",
       zipCode,
     };
-    // Submit form data to the server
-    // await fetch("/api/employee", {
-    //   method: "POST",
-    //   body: data,
-    // });
-
     console.log(data);
+    setData([...data, dataToSubmit]);
 
     setIsOpen(true);
   };
@@ -72,7 +72,7 @@ export function Form() {
           <CustomerLabel>Date of Birth</CustomerLabel>
           <DatePicker
             selected={dateOfBirth}
-            onChange={(date) => setDateOfBirth(date)}
+            onChange={(date) => setDateOfBirth(date as Date)}
           />
         </InputWrapper>
 
@@ -80,7 +80,7 @@ export function Form() {
           <CustomerLabel>Start Date</CustomerLabel>
           <DatePicker
             selected={startDate}
-            onChange={(date) => setStartDate(date)}
+            onChange={(date) => setStartDate(date as Date)}
           />
         </InputWrapper>
 

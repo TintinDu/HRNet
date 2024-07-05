@@ -5,7 +5,6 @@ import {
   getCoreRowModel,
   ColumnDef,
 } from "@tanstack/react-table";
-import { DataEmployees } from "../../pages/EmployeesList";
 import {
   StyledTable,
   StyledTbody,
@@ -14,8 +13,11 @@ import {
   StyledThead,
   StyledTr,
 } from "./style";
+import { useContext } from "react";
+import { Context } from "../../contexts";
 
-export const Table = ({ data }: { data: DataEmployees }) => {
+const Table = () => {
+  const { data } = useContext(Context);
   const columnHelper = createColumnHelper();
 
   const columns = [
@@ -72,7 +74,7 @@ export const Table = ({ data }: { data: DataEmployees }) => {
             <StyledTr key={headerGroup.id}>
               {headerGroup.headers.map((header) => {
                 return (
-                  <StyledTh id={header.id}>
+                  <StyledTh key={header.id} id={header.id}>
                     {" "}
                     {header.isPlaceholder
                       ? null
@@ -105,3 +107,5 @@ export const Table = ({ data }: { data: DataEmployees }) => {
     </StyledTable>
   );
 };
+
+export default Table;
