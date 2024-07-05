@@ -73,11 +73,21 @@ const colourStyles: StylesConfig<{
 export const FormSelect = ({
   data,
   defaultValue,
+  setData,
 }: {
   data: { value: string; label: string; color: string }[];
   defaultValue: { value: string; label: string; color: string };
+  setData: React.Dispatch<React.SetStateAction<string>>;
 }) => {
   return (
-    <Select options={data} styles={colourStyles} defaultValue={defaultValue} />
+    <Select
+      options={data}
+      styles={colourStyles}
+      defaultValue={defaultValue}
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      onChange={(e: any) => {
+        setData(e.value);
+      }}
+    />
   );
 };
