@@ -17,8 +17,8 @@ import { Dialog } from "../Dialog";
 import { Context } from "../../contexts";
 
 export function Form() {
-  const { data, setData } = useContext(Context);
-  console.log(data);
+  const { data, update } = useContext(Context);
+
   const [firstName, setFirstName] = useState<string>("");
   const [lastName, setLastName] = useState<string>("");
   const [dateOfBirth, setDateOfBirth] = useState<Date>(new Date());
@@ -26,6 +26,8 @@ export function Form() {
   const [street, setStreet] = useState<string>("");
   const [city, setCity] = useState<string>("");
   const [zipCode, setZipCode] = useState<string>("");
+  const [state, setState] = useState<string>("");
+  const [department, setDepartment] = useState<string>("");
 
   const [isOpen, setIsOpen] = useState(false);
 
@@ -34,16 +36,16 @@ export function Form() {
     const dataToSubmit = {
       firstName,
       lastName,
-      birthDate: dateOfBirth.toISOString(),
-      startDate: startDate.toISOString(),
-      department: "",
+      birthDate: dateOfBirth.toLocaleDateString(),
+      startDate: startDate.toLocaleDateString(),
+      department,
       street,
       city,
-      state: "",
+      state,
       zipCode,
     };
     console.log(data);
-    setData([...data, dataToSubmit]);
+    update([...data, dataToSubmit]);
 
     setIsOpen(true);
   };
@@ -111,6 +113,7 @@ export function Form() {
               <FormSelect
                 data={states}
                 defaultValue={{ label: "Select State", value: "", color: "" }}
+                setData={setState}
               />
             </InputWrapper>
 
@@ -129,6 +132,7 @@ export function Form() {
         <InputWrapper>
           <CustomerLabel>Department</CustomerLabel>
           <FormSelect
+            setData={setDepartment}
             data={departments}
             defaultValue={{ label: "Select Department", value: "", color: "" }}
           />
