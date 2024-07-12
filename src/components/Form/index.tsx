@@ -44,7 +44,6 @@ export function Form() {
       state,
       zipCode,
     };
-    console.log(data);
     update([...data, dataToSubmit]);
 
     setIsOpen(true);

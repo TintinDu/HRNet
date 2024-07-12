@@ -29,31 +29,46 @@ const colourStyles: StylesConfig<{
   }),
   option: (styles, { data, isDisabled, isFocused, isSelected }) => {
     const color = chroma(data.color);
+    let backgroundColor;
+    if (isDisabled) {
+      backgroundColor = undefined;
+    } else if (isSelected) {
+      backgroundColor = data.color;
+    } else if (isFocused) {
+      backgroundColor = color.alpha(0.1).css();
+    } else {
+      backgroundColor = undefined;
+    }
+
+    let colorValue;
+    if (isDisabled) {
+      colorValue = "#ccc";
+    } else if (isSelected) {
+      colorValue = chroma.contrast(color, "white") > 2 ? "white" : "black";
+    } else {
+      colorValue = data.color;
+    }
+
+    let activeBackgroundColor;
+    if (!isDisabled) {
+      if (isSelected) {
+        activeBackgroundColor = data.color;
+      } else {
+        activeBackgroundColor = color.alpha(0.3).css();
+      }
+    } else {
+      activeBackgroundColor = undefined;
+    }
+
     return {
       ...styles,
-      backgroundColor: isDisabled
-        ? undefined
-        : isSelected
-          ? data.color
-          : isFocused
-            ? color.alpha(0.1).css()
-            : undefined,
-      color: isDisabled
-        ? "#ccc"
-        : isSelected
-          ? chroma.contrast(color, "white") > 2
-            ? "white"
-            : "black"
-          : data.color,
+      backgroundColor,
+      color: colorValue,
       cursor: isDisabled ? "not-allowed" : "default",
 
       ":active": {
         ...styles[":active"],
-        backgroundColor: !isDisabled
-          ? isSelected
-            ? data.color
-            : color.alpha(0.3).css()
-          : undefined,
+        backgroundColor: activeBackgroundColor,
       },
     };
   },
