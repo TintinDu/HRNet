@@ -5,7 +5,7 @@ interface DialogProps {
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-export const Dialog = ({ isOpen, setIsOpen }: DialogProps) => {
+const Dialog = ({ isOpen, setIsOpen }: DialogProps) => {
   return (
     <TintinDuDialog
       isOpen={isOpen}
@@ -33,3 +33,5 @@ export const Dialog = ({ isOpen, setIsOpen }: DialogProps) => {
     </TintinDuDialog>
   );
 };
+
+export default Dialog;

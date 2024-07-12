@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { lazy, useContext, useState } from "react";
 import {
   CustomInput,
   CustomLegend,
@@ -9,12 +9,12 @@ import {
   StyledForm,
   SubmitButton,
 } from "./style";
-import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import { FormSelect } from "../Select";
 import { departments, states } from "../../constants";
-import { Dialog } from "../Dialog";
 import { Context } from "../../contexts";
+const Dialog = lazy(() => import("../Dialog"));
+const FormSelect = lazy(() => import("../Select"));
+const DatePicker = lazy(() => import("react-datepicker"));
 
 export function Form() {
   const { data, update } = useContext(Context);

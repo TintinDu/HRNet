@@ -85,7 +85,7 @@ const colourStyles: StylesConfig<{
   singleValue: (styles, { data }) => ({ ...styles, ...dot(data.color) }),
 };
 
-export const FormSelect = ({
+const FormSelect = ({
   data,
   defaultValue,
   setData,
@@ -106,3 +106,5 @@ export const FormSelect = ({
     />
   );
 };
+
+export default FormSelect;
