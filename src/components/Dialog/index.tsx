@@ -2,10 +2,10 @@ import { TintinDuDialog } from "tintindu-dialog";
 
 interface DialogProps {
   isOpen: boolean;
-  setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  setIsOpen: (isOpen: boolean) => void;
 }
 
-const Dialog = ({ isOpen, setIsOpen }: DialogProps) => {
+const Dialog = ({ isOpen = false, setIsOpen = () => {} }: DialogProps) => {
   return (
     <TintinDuDialog
       isOpen={isOpen}
