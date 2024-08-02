@@ -11,14 +11,15 @@ import {
 } from "./style";
 import "react-datepicker/dist/react-datepicker.css";
 import { departments, states } from "../../constants";
-import { Context } from "../../contexts";
+import { EmployeeContext } from "../../contexts";
 const Dialog = lazy(() => import("../Dialog"));
 const FormSelect = lazy(() => import("../Select"));
 const DatePicker = lazy(() => import("react-datepicker"));
 
 export function Form() {
-  const { data, update } = useContext(Context);
-
+  const employeeData = localStorage.getItem("employeeData");
+  const { update, data } = useContext(EmployeeContext);
+  const dataFromStorage = employeeData ? JSON.parse(employeeData) : [data];
   const [firstName, setFirstName] = useState<string>("");
   const [lastName, setLastName] = useState<string>("");
   const [dateOfBirth, setDateOfBirth] = useState<Date>(new Date());
@@ -44,7 +45,11 @@ export function Form() {
       state,
       zipCode,
     };
-    update([...data, dataToSubmit]);
+    update([...dataFromStorage, dataToSubmit]);
+    localStorage.setItem(
+      "employeeData",
+      JSON.stringify([...dataFromStorage, dataToSubmit]),
+    );
 
     setIsOpen(true);
   };
