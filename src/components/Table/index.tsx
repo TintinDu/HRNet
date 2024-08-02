@@ -14,10 +14,10 @@ import {
   StyledTr,
 } from "./style";
 import { useContext } from "react";
-import { Context } from "../../contexts";
+import { EmployeeContext } from "../../contexts";
 
 const Table = () => {
-  const { data } = useContext(Context);
+  const { data } = useContext(EmployeeContext);
   const columnHelper = createColumnHelper();
 
   const columns = [
