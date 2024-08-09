@@ -1,11 +1,5 @@
 import styled from "styled-components";
 
-export const CustomerLabel = styled.label`
-  font-weight: bold;
-  font-size: 1rem;
-  margin: 0.5rem 0;
-`;
-
 export const InputWrapper = styled.div`
   display: flex;
   flex-direction: column;

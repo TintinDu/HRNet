@@ -3,7 +3,6 @@ import {
   CustomInput,
   CustomLegend,
   CustomSmallLabel,
-  CustomerLabel,
   DivError,
   FieldSet,
   InputWrapper,
@@ -13,6 +12,7 @@ import {
 import "react-datepicker/dist/react-datepicker.css";
 import { departments, states } from "../../constants";
 import { EmployeeContext } from "../../contexts";
+import CustomLabel from "../LabelForm";
 const Dialog = lazy(() => import("../Dialog"));
 const FormSelect = lazy(() => import("../Select"));
 const DatePicker = lazy(() => import("react-datepicker"));
@@ -80,36 +80,43 @@ export function Form() {
       <Dialog isOpen={isOpen} setIsOpen={setIsOpen} />
       <StyledForm onSubmit={handleSubmit} method="POST">
         <InputWrapper>
-          <CustomerLabel>First Name</CustomerLabel>
+          <CustomLabel htmlFor="first-name">First Name</CustomLabel>
           <CustomInput
+            id="first-name"
             value={firstName}
             onChange={(e) => setFirstName(e.target.value)}
+            autoComplete="given-name"
           />
           {errors.firstName && <DivError>{errors.firstName}</DivError>}
         </InputWrapper>
 
         <InputWrapper>
-          <CustomerLabel>Last Name</CustomerLabel>
+          <CustomLabel htmlFor="last-name">Last Name</CustomLabel>
           <CustomInput
+            id="last-name"
             value={lastName}
             onChange={(e) => setLastName(e.target.value)}
+            autoComplete="family-name"
           />
           {errors.lastName && <DivError>{errors.lastName}</DivError>}
         </InputWrapper>
 
         <InputWrapper>
-          <CustomerLabel>Date of Birth</CustomerLabel>
+          <CustomLabel htmlFor="date-of-birth">Date of Birth</CustomLabel>
           <DatePicker
+            id="date-of-birth"
             selected={dateOfBirth}
             onChange={(date) => setDateOfBirth(date as Date)}
             openToDate={new Date(1990, 0, 1)}
+            autoComplete="bday"
           />
           {errors.dateOfBirth && <DivError>{errors.dateOfBirth}</DivError>}
         </InputWrapper>
 
         <InputWrapper>
-          <CustomerLabel>Start Date</CustomerLabel>
+          <CustomLabel htmlFor="start-date">Start Date</CustomLabel>
           <DatePicker
+            id="start-date"
             selected={startDate}
             onChange={(date) => setStartDate(date as Date)}
             openToDate={new Date()}
@@ -127,6 +134,7 @@ export function Form() {
                 id="street"
                 value={street}
                 onChange={(e) => setStreet(e.target.value)}
+                autoComplete="street-address"
               />
               {errors.street && <DivError>{errors.street}</DivError>}
             </InputWrapper>
@@ -137,6 +145,7 @@ export function Form() {
                 id="city"
                 value={city}
                 onChange={(e) => setCity(e.target.value)}
+                autoComplete="address-level2"
               />
               {errors.city && <DivError>{errors.city}</DivError>}
             </InputWrapper>
@@ -144,9 +153,11 @@ export function Form() {
             <InputWrapper>
               <CustomSmallLabel htmlFor="state">State</CustomSmallLabel>
               <FormSelect
+                id="state"
                 data={states}
                 defaultValue={{ label: "Select State", value: "", color: "" }}
                 setData={setState}
+                autoComplete="address-level1"
               />
               {errors.state && <DivError>{errors.state}</DivError>}
             </InputWrapper>
@@ -158,6 +169,7 @@ export function Form() {
                 type="number"
                 value={zipCode}
                 onChange={(e) => setZipCode(e.target.value)}
+                autoComplete="postal-code"
               />
               {errors.zipCode && <DivError>{errors.zipCode}</DivError>}
             </InputWrapper>
@@ -165,11 +177,13 @@ export function Form() {
         </InputWrapper>
 
         <InputWrapper>
-          <CustomerLabel>Department</CustomerLabel>
+          <CustomLabel htmlFor="department">Department</CustomLabel>
           <FormSelect
+            id="department"
             setData={setDepartment}
             data={departments}
             defaultValue={{ label: "Select Department", value: "", color: "" }}
+            autoComplete="organization"
           />
           {errors.department && <DivError>{errors.department}</DivError>}
         </InputWrapper>

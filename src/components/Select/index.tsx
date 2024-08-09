@@ -1,5 +1,6 @@
-import Select, { StylesConfig } from "react-select";
+import Select, { StylesConfig, components } from "react-select";
 import chroma from "chroma-js";
+import { useEffect, useRef } from "react";
 
 const dot = (color = "transparent") => ({
   alignItems: "center",
@@ -89,11 +90,23 @@ const FormSelect = ({
   data,
   defaultValue,
   setData,
+  id,
+  autoComplete,
 }: {
   data: { value: string; label: string; color: string }[];
   defaultValue: { value: string; label: string; color: string };
   setData: React.Dispatch<React.SetStateAction<string>>;
+  id?: string;
+  autoComplete?: string;
 }) => {
+  const inputRef = useRef<HTMLInputElement | null>(null);
+
+  useEffect(() => {
+    if (inputRef.current && autoComplete) {
+      inputRef.current.setAttribute("autoComplete", autoComplete);
+    }
+  }, [autoComplete]);
+
   return (
     <Select
       options={data}
@@ -102,6 +115,17 @@ const FormSelect = ({
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       onChange={(e: any) => {
         setData(e.value);
+      }}
+      inputId={id}
+      components={{
+        Input: (props) => (
+          <components.Input
+            {...props}
+            innerRef={(instance: HTMLInputElement | null) => {
+              inputRef.current = instance;
+            }}
+          />
+        ),
       }}
     />
   );
