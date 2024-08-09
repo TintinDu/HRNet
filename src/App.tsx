@@ -7,7 +7,6 @@ import { MockedData } from "./__mocks";
 
 function App() {
   const { data } = useContext(EmployeeContext);
-  // localStorage.setItem("employeeData", JSON.stringify(data));
   const [employeeData, setEmployeeData] = useState(data);
 
   const update = useCallback((data: MockedData) => setEmployeeData(data), []);

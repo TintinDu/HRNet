@@ -18,6 +18,10 @@ import { EmployeeContext } from "../../contexts";
 
 const Table = () => {
   const { data } = useContext(EmployeeContext);
+  const dataFromStorage = localStorage.getItem("employeeData");
+
+  const dataToUse = dataFromStorage ? JSON.parse(dataFromStorage) : data;
+
   const columnHelper = createColumnHelper();
 
   const columns = [
@@ -60,7 +64,7 @@ const Table = () => {
   ];
 
   const table = useReactTable({
-    data,
+    data: dataToUse,
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     columns: columns as ColumnDef<unknown, any>[],
     getCoreRowModel: getCoreRowModel(),
