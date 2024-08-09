@@ -1,4 +1,6 @@
+import { useNavigate } from "react-router-dom";
 import { TintinDuDialog } from "tintindu-dialog";
+import { routes } from "../../routes/router.constants";
 
 interface DialogProps {
   isOpen: boolean;
@@ -6,10 +8,14 @@ interface DialogProps {
 }
 
 const Dialog = ({ isOpen = false, setIsOpen = () => {} }: DialogProps) => {
+  const navigate = useNavigate();
   return (
     <TintinDuDialog
       isOpen={isOpen}
-      onClose={() => setIsOpen(false)}
+      onClose={() => {
+        setIsOpen(false);
+        navigate(routes.EMPLOYEES);
+      }}
       closeButtonStyle="icon"
       customStyles={{
         content: {
