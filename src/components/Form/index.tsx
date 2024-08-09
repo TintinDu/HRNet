@@ -1,4 +1,4 @@
-import { lazy, useContext, Suspense, useState } from "react";
+import { useContext, useState } from "react";
 import {
   CustomInput,
   CustomLegend,
@@ -13,9 +13,9 @@ import "react-datepicker/dist/react-datepicker.css";
 import { departments, states } from "../../constants";
 import { EmployeeContext } from "../../contexts";
 import CustomLabel from "../LabelForm";
-const Dialog = lazy(() => import("../Dialog"));
-const FormSelect = lazy(() => import("../Select"));
-const DatePicker = lazy(() => import("react-datepicker"));
+import Dialog from "../Dialog";
+import FormSelect from "../Select";
+import DatePicker from "react-datepicker";
 
 export function Form() {
   const employeeData = localStorage.getItem("employeeData");
@@ -76,7 +76,7 @@ export function Form() {
   };
 
   return (
-    <Suspense fallback={<div>Loading...</div>}>
+    <>
       <Dialog isOpen={isOpen} setIsOpen={setIsOpen} />
       <StyledForm onSubmit={handleSubmit} method="POST">
         <InputWrapper>
@@ -190,6 +190,6 @@ export function Form() {
 
         <SubmitButton type="submit">Save</SubmitButton>
       </StyledForm>
-    </Suspense>
+    </>
   );
 }
