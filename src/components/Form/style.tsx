@@ -3,13 +3,13 @@ import styled from "styled-components";
 export const CustomerLabel = styled.label`
   font-weight: bold;
   font-size: 1rem;
+  margin: 0.5rem 0;
 `;
 
 export const InputWrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: 0.75rem;
   margin: 0.25rem 0;
 `;
 
@@ -74,4 +74,10 @@ export const FieldSet = styled.fieldset`
 
 export const CustomLegend = styled.legend`
   font-weight: bold;
+`;
+
+export const DivError = styled.div`
+  color: red;
+  font-size: 0.8rem;
+  margin-top: 0.25rem;
 `;
