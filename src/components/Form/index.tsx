@@ -1,4 +1,4 @@
-import { lazy, useContext, useState } from "react";
+import { lazy, useContext, Suspense, useState } from "react";
 import {
   CustomInput,
   CustomLegend,
@@ -19,7 +19,7 @@ const DatePicker = lazy(() => import("react-datepicker"));
 export function Form() {
   const employeeData = localStorage.getItem("employeeData");
   const { update, data } = useContext(EmployeeContext);
-  const dataFromStorage = employeeData ? JSON.parse(employeeData) : [data];
+  const dataToUse = employeeData ? JSON.parse(employeeData) : data;
   const [firstName, setFirstName] = useState<string>("");
   const [lastName, setLastName] = useState<string>("");
   const [dateOfBirth, setDateOfBirth] = useState<Date>(new Date());
@@ -45,17 +45,17 @@ export function Form() {
       state,
       zipCode,
     };
-    update([...dataFromStorage, dataToSubmit]);
+    update([...dataToUse, dataToSubmit]);
     localStorage.setItem(
       "employeeData",
-      JSON.stringify([...dataFromStorage, dataToSubmit]),
+      JSON.stringify([...dataToUse, dataToSubmit]),
     );
 
     setIsOpen(true);
   };
 
   return (
-    <>
+    <Suspense fallback={<div>Loading...</div>}>
       <Dialog isOpen={isOpen} setIsOpen={setIsOpen} />
       <StyledForm onSubmit={handleSubmit} method="POST">
         <InputWrapper>
@@ -144,6 +144,6 @@ export function Form() {
 
         <SubmitButton type="submit">Save</SubmitButton>
       </StyledForm>
-    </>
+    </Suspense>
   );
 }
