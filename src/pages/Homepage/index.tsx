@@ -10,11 +10,13 @@ const HeaderSecondary = styled.h2`
   margin-bottom: 0.5rem;
 `;
 
-export const Homepage = () => {
+function Homepage() {
   return (
     <>
       <HeaderSecondary>Create Employee</HeaderSecondary>
       <Form />
     </>
   );
-};
+}
+
+export default Homepage;

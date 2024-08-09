@@ -8,7 +8,7 @@ export const BasicMain = styled.main`
   flex: 1;
 `;
 
-export function Layout() {
+function Layout() {
   return (
     <div className="App">
       <Navbar />
@@ -20,3 +20,5 @@ export function Layout() {
     </div>
   );
 }
+
+export default Layout;

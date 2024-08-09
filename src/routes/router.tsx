@@ -1,8 +1,10 @@
+import { lazy, Suspense } from "react";
 import { createBrowserRouter } from "react-router-dom";
-import { Homepage } from "../pages/Homepage";
-import { Layout } from "../layout";
-import { EmployeesList } from "../pages/EmployeesList";
+import Layout from "../layout";
 import { routes } from "./router.constants";
+
+const Homepage = lazy(() => import("../pages/Homepage"));
+const EmployeesList = lazy(() => import("../pages/EmployeesList"));
 
 export const router = createBrowserRouter([
   {
@@ -11,11 +13,19 @@ export const router = createBrowserRouter([
     children: [
       {
         path: routes.HOME,
-        element: <Homepage />,
+        element: (
+          <Suspense fallback={<div>Loading...</div>}>
+            <Homepage />
+          </Suspense>
+        ),
       },
       {
         path: routes.EMPLOYEES,
-        element: <EmployeesList />,
+        element: (
+          <Suspense fallback={<div>Loading...</div>}>
+            <EmployeesList />
+          </Suspense>
+        ),
       },
     ],
   },
