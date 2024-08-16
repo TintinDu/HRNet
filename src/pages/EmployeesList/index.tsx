@@ -1,20 +1,15 @@
 import { Link } from "../../components/Link";
 import { routes } from "../../routes/router.constants";
 
-import { Suspense, lazy, memo } from "react";
-
-const Table = lazy(() => import("../../components/Table"));
-const HeaderEmployees = lazy(() => import("./style"));
+import { memo } from "react";
+import Table from "../../components/Table";
+import HeaderEmployees from "./style";
 
 const EmployeesList = memo(() => {
   return (
     <>
-      <Suspense fallback={<div>Loading header...</div>}>
-        <HeaderEmployees>Current Employees</HeaderEmployees>
-      </Suspense>
-      <Suspense fallback={<div>Loading table...</div>}>
-        <Table />
-      </Suspense>
+      <HeaderEmployees>Current Employees</HeaderEmployees>
+      <Table />
       <Link path={routes.HOME} label="Home" />
     </>
   );
