@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { lazy, Suspense, useContext, useState } from "react";
 import {
   CustomInput,
   CustomLegend,
@@ -15,7 +15,7 @@ import { EmployeeContext } from "../../contexts";
 import CustomLabel from "../LabelForm";
 import Dialog from "../Dialog";
 import FormSelect from "../Select";
-import DatePicker from "react-datepicker";
+const DatePicker = lazy(() => import("react-datepicker"));
 
 export function Form() {
   const employeeData = localStorage.getItem("employeeData");
@@ -101,17 +101,19 @@ export function Form() {
           {errors.lastName && <DivError>{errors.lastName}</DivError>}
         </InputWrapper>
 
-        <InputWrapper>
-          <CustomLabel htmlFor="date-of-birth">Date of Birth</CustomLabel>
-          <DatePicker
-            id="date-of-birth"
-            selected={dateOfBirth}
-            onChange={(date) => setDateOfBirth(date as Date)}
-            openToDate={new Date(1990, 0, 1)}
-            autoComplete="bday"
-          />
-          {errors.dateOfBirth && <DivError>{errors.dateOfBirth}</DivError>}
-        </InputWrapper>
+        <Suspense fallback={<div>Loading...</div>}>
+          <InputWrapper>
+            <CustomLabel htmlFor="date-of-birth">Date of Birth</CustomLabel>
+            <DatePicker
+              id="date-of-birth"
+              selected={dateOfBirth}
+              onChange={(date) => setDateOfBirth(date as Date)}
+              openToDate={new Date(1990, 0, 1)}
+              autoComplete="bday"
+            />
+            {errors.dateOfBirth && <DivError>{errors.dateOfBirth}</DivError>}
+          </InputWrapper>
+        </Suspense>
 
         <InputWrapper>
           <CustomLabel htmlFor="start-date">Start Date</CustomLabel>
