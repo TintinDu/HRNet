@@ -7,7 +7,7 @@ export default defineConfig({
   build: {
     rollupOptions: {
       output: {
-        chunkFileNames: "chunks/[name]-[hash].js",
+        chunkFileNames: "lazy-[name]-[hash].js", // Custom naming pattern for chunks
       },
     },
     modulePreload: {
