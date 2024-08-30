@@ -1,4 +1,4 @@
-import{a as G,p as D,E as we,j as $,L as he,r as ve}from"../assets/index-R8eR41k1.js";/**
+import{a as G,p as D,E as we,j as $,L as he,r as ve}from"./assets/index-CwYQq0i0.js";/**
    * table-core
    *
    * Copyright (c) TanStack
