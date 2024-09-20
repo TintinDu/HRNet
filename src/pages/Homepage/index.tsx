@@ -11,6 +11,7 @@ const HeaderSecondary = styled.h2`
 `;
 
 function Homepage() {
+  // recupérer les noms des chunks pour les preload
   return (
     <>
       <HeaderSecondary>Create Employee</HeaderSecondary>

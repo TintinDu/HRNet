@@ -3,8 +3,15 @@ import { createHashRouter } from "react-router-dom";
 import Layout from "../layout";
 import { routes } from "./router.constants";
 
-const Homepage = lazy(() => import("../pages/Homepage"));
-const EmployeesList = lazy(() => import("../pages/EmployeesList"));
+// Preload comment for Homepage
+const Homepage = lazy(
+  () => import(/* webpackChunkName: "homepage" */ "../pages/Homepage"),
+);
+// Preload comment for EmployeesList
+const EmployeesList = lazy(
+  () =>
+    import(/* webpackChunkName: "employeeslist" */ "../pages/EmployeesList"),
+);
 
 export const router = createHashRouter([
   {
