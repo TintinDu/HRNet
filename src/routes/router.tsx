@@ -1,22 +1,14 @@
-import { lazy, Suspense } from "react";
+import { Suspense } from "react";
 import { createHashRouter } from "react-router-dom";
 import Layout from "../layout";
 import { routes } from "./router.constants";
-
-// Preload comment for Homepage
-const Homepage = lazy(
-  () => import(/* webpackChunkName: "homepage" */ "../pages/Homepage"),
-);
-// Preload comment for EmployeesList
-const EmployeesList = lazy(
-  () =>
-    import(/* webpackChunkName: "employeeslist" */ "../pages/EmployeesList"),
-);
+import Homepage from "../pages/Homepage";
+import EmployeesList from "../pages/EmployeesList";
 
 export const router = createHashRouter([
   {
     element: <Layout />,
-    errorElement: "Failed to load page",
+    errorElement: <div>Failed to load page</div>,
     children: [
       {
         path: routes.HOME,

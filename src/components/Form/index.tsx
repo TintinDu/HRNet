@@ -1,4 +1,4 @@
-import { lazy, Suspense, useContext, useState } from "react";
+import { useContext, useState } from "react";
 import {
   CustomInput,
   CustomLegend,
@@ -15,9 +15,9 @@ import { EmployeeContext } from "../../contexts";
 import CustomLabel from "../LabelForm";
 import Dialog from "../Dialog";
 import FormSelect from "../Select";
-const DatePicker = lazy(() => import("react-datepicker"));
+import DatePicker from "react-datepicker";
 
-export function Form() {
+function Form() {
   const employeeData = localStorage.getItem("employeeData");
   const { update, data } = useContext(EmployeeContext);
   const dataToUse = employeeData ? JSON.parse(employeeData) : data;
@@ -101,23 +101,25 @@ export function Form() {
           {errors.lastName && <DivError>{errors.lastName}</DivError>}
         </InputWrapper>
 
-        <Suspense fallback={<div>Loading...</div>}>
-          <InputWrapper>
-            <CustomLabel htmlFor="date-of-birth">Date of Birth</CustomLabel>
-            <DatePicker
-              id="date-of-birth"
-              selected={dateOfBirth}
-              onChange={(date) => setDateOfBirth(date as Date)}
-              openToDate={new Date(1990, 0, 1)}
-              autoComplete="bday"
-            />
-            {errors.dateOfBirth && <DivError>{errors.dateOfBirth}</DivError>}
-          </InputWrapper>
-        </Suspense>
+        <InputWrapper>
+          <CustomLabel htmlFor="date-of-birth">Date of Birth</CustomLabel>
+          <DatePicker
+            excludeScrollbar={true}
+            onSelect={(date) => setDateOfBirth(date as Date)}
+            id="date-of-birth"
+            selected={dateOfBirth}
+            onChange={(date) => setDateOfBirth(date as Date)}
+            openToDate={new Date(1990, 0, 1)}
+            autoComplete="bday"
+          />
+          {errors.dateOfBirth && <DivError>{errors.dateOfBirth}</DivError>}
+        </InputWrapper>
 
         <InputWrapper>
           <CustomLabel htmlFor="start-date">Start Date</CustomLabel>
           <DatePicker
+            excludeScrollbar={true}
+            onSelect={(date) => setStartDate(date as Date)}
             id="start-date"
             selected={startDate}
             onChange={(date) => setStartDate(date as Date)}
@@ -184,7 +186,11 @@ export function Form() {
             id="department"
             setData={setDepartment}
             data={departments}
-            defaultValue={{ label: "Select Department", value: "", color: "" }}
+            defaultValue={{
+              label: "Select Department",
+              value: "",
+              color: "",
+            }}
             autoComplete="organization"
           />
           {errors.department && <DivError>{errors.department}</DivError>}
@@ -195,3 +201,5 @@ export function Form() {
     </>
   );
 }
+
+export default Form;

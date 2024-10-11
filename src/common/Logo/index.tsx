@@ -16,10 +16,14 @@ const StyledH1 = styled.h1`
   letter-spacing: 0.1rem;
 `;
 
+const StyledLink = styled(Link)`
+  text-decoration: none;
+`;
+
 export const Logo = () => {
   return (
-    <Link to={routes.HOME}>
+    <StyledLink to={routes.HOME}>
       <StyledH1>HRnet</StyledH1>
-    </Link>
+    </StyledLink>
   );
 };
