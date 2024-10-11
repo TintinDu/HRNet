@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Form } from "../../components/Form";
+import Form from "../../components/Form";
 
 const HeaderSecondary = styled.h2`
   font-size: 1.3rem;
@@ -11,7 +11,6 @@ const HeaderSecondary = styled.h2`
 `;
 
 function Homepage() {
-  // recupérer les noms des chunks pour les preload
   return (
     <>
       <HeaderSecondary>Create Employee</HeaderSecondary>
